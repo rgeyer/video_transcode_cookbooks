@@ -33,6 +33,12 @@ gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'worke
   end
 end
 
+bash "Clear RubyGem Sources" do
+  code <<EOF
+for i in `gem sources | awk '{if (NR > 2) {print}}'`; do gem sources -r $i; done
+EOF
+end
+
 gem_package gemfile
 
 rs_utils_marker :end
