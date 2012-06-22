@@ -5,6 +5,30 @@
   "name": "transcode_controller",
   "maintainer_email": "me@ryangeyer.com",
   "attributes": {
+    "cloud/google/store/secret": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "transcode_controller::install"
+      ],
+      "display_name": "Google Storage API Secret"
+    },
+    "cloud/google/store/key": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "transcode_controller::install"
+      ],
+      "display_name": "Google Storage API Key"
+    }
   },
   "license": "All rights reserved",
   "suggestions": {

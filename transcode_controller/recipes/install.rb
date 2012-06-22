@@ -40,4 +40,10 @@ gem install #{gemfile} --no-ri --no-rdoc
 EOF
 end
 
+template ::File.join('/root', '.fog') do
+  owner 'root'
+  mode 00600
+  source 'dot_fog.erb'
+end
+
 rs_utils_marker :end
