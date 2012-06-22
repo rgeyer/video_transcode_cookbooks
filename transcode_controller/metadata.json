@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "rs_utils": ">= 0.0.0"
+  },
+  "name": "transcode_controller",
+  "maintainer_email": "me@ryangeyer.com",
+  "attributes": {
+  },
+  "license": "All rights reserved",
+  "suggestions": {
+  },
+  "platforms": {
+    "ubuntu": ">= 0.0.0"
+  },
+  "maintainer": "Ryan J. Geyer",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "recipes": {
+    "transcode_controller::install": "Installs the transcode controller gem and any required libs"
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs/Configures transcode_controller",
+  "providing": {
+  }
+}
