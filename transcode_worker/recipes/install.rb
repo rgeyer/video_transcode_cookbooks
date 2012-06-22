@@ -33,12 +33,11 @@ gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'worke
   end
 end
 
-bash "Clear RubyGem Sources" do
+bash "Reset RubyGem sources to include only http://rubygems.org/ and install worker gem" do
   code <<EOF
 for i in `gem sources | awk '{if (NR > 2) {print}}'`; do gem sources -r $i; done
+gem install #{gemfile} --no-ri --no-rdoc
 EOF
 end
-
-gem_package gemfile
 
 rs_utils_marker :end
