@@ -27,6 +27,7 @@ rs_utils_marker :begin
 
 bash "Stop all running gio_2012_workers" do
   code "killall -9 gio_2012_worker"
+  returns [0,1]
 end
 
 rs_utils_marker :end

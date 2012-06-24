@@ -27,11 +27,14 @@ include_recipe 'transcode_worker::install'
 
 rs_utils_marker :begin
 
-running_workers = `pgrep -f gio_2012_worker | wc -l`.to_i
+running_workers = `pgrep -f gio_2012_worker | wc -l`.to_i - 1
+worker_count = node[:transcode][:worker][:count].to_i
 
-(node[:transcode][:worker][:count].to_i - running_workers).times do |idx|
+qty = worker_count - running_workers
+
+qty.times do |idx|
   bash "Start the #{idx}th worker" do
-    code "gio_2012_worker --amqp-host #{node[:transcode][:amqp][:host]} --gstore-bucket #{node[:transcode][:gstore_bucket]}"
+    code "gio_2012_worker --amqp-host #{node[:transcode][:amqp][:host]} --gstorage-bucket #{node[:transcode][:gstore_bucket]} &"
   end
 end
 
