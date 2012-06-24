@@ -27,7 +27,7 @@ include_recipe 'transcode_worker::install'
 
 rs_utils_marker :begin
 
-running_workers = `pgrep -f gio_2012_worker | wc -l`
+running_workers = `pgrep -f gio_2012_worker | wc -l`.to_i
 
 (node[:transcode][:worker][:count].to_i - running_workers).times do |idx|
   bash "Start the #{idx}th worker" do
