@@ -5,6 +5,31 @@
   "name": "transcode_worker",
   "maintainer_email": "me@ryangeyer.com",
   "attributes": {
+    "transcode/gstore_bucket": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "transcode_worker::do_start_workers"
+      ],
+      "display_name": "Transcoding Destination Google Storage Bucket"
+    },
+    "transcode/worker/count": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "1",
+      "type": "string",
+      "recipes": [
+        "transcode_worker::do_start_workers"
+      ],
+      "display_name": "Transcode Worker Count"
+    },
     "cloud/google/store/secret": {
       "required": "required",
       "calculated": false,
@@ -16,6 +41,18 @@
         "transcode_worker::install"
       ],
       "display_name": "Google Storage API Secret"
+    },
+    "transcode/amqp/host": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "transcode_worker::do_start_workers"
+      ],
+      "display_name": "Transcode AMQP Hostname"
     },
     "cloud/google/store/key": {
       "required": "required",
@@ -42,6 +79,8 @@
   "recommendations": {
   },
   "recipes": {
+    "transcode_worker::do_stop_workers": "Stops all running transcoding workers",
+    "transcode_worker::do_start_workers": "Starts the specified number of transcoding workers",
     "transcode_worker::install": "Installs the transcode worker gem and any required libs"
   },
   "groupings": {

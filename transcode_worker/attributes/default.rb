@@ -1,0 +1,1 @@
+default[:transcode][:worker][:count] = "1"

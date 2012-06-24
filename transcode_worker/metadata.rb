@@ -10,6 +10,8 @@ supports "ubuntu"
 depends "rs_utils"
 
 recipe "transcode_worker::install", "Installs the transcode worker gem and any required libs"
+recipe "transcode_worker::do_start_workers", "Starts the specified number of transcoding workers"
+recipe "transcode_worker::do_stop_workers", "Stops all running transcoding workers"
 
 attribute "cloud/google/store/key",
   :display_name => "Google Storage API Key",
@@ -20,3 +22,19 @@ attribute "cloud/google/store/secret",
   :display_name => "Google Storage API Secret",
   :required => "required",
   :recipes => ["transcode_worker::install"]
+
+attribute "transcode/amqp/host",
+  :display_name => "Transcode AMQP Hostname",
+  :required => "required",
+  :recipes => ["transcode_worker::do_start_workers"]
+
+attribute "transcode/gstore_bucket",
+  :display_name => "Transcoding Destination Google Storage Bucket",
+  :required => "required",
+  :recipes => ["transcode_worker::do_start_workers"]
+
+attribute "transcode/worker/count",
+  :display_name => "Transcode Worker Count",
+  :required => "optional",
+  :default => "1",
+  :recipes => ["transcode_worker::do_start_workers"]
