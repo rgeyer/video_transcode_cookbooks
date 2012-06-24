@@ -17,6 +17,30 @@
       ],
       "display_name": "Google Storage API Secret"
     },
+    "transcode/rss_sources": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "array",
+      "recipes": [
+        "transcode_controller::do_create_jobs_from_rss"
+      ],
+      "display_name": "Transcoding RSS Sources"
+    },
+    "transcode/amqp/host": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "transcode_controller::do_create_jobs_from_rss"
+      ],
+      "display_name": "Transcode AMQP Hostname"
+    },
     "cloud/google/store/key": {
       "required": "required",
       "calculated": false,
@@ -42,7 +66,8 @@
   "recommendations": {
   },
   "recipes": {
-    "transcode_controller::install": "Installs the transcode controller gem and any required libs"
+    "transcode_controller::install": "Installs the transcode controller gem and any required libs",
+    "transcode_controller::do_create_jobs_from_rss": "Executes gio_2012_controller once for each RSS feed that's supplied"
   },
   "groupings": {
   },
