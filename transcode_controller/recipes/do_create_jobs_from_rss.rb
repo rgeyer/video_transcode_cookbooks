@@ -25,9 +25,15 @@
 
 rs_utils_marker :begin
 
+presets = ""
+
+node[:transcode][:handbrake_presets].each do |preset|
+  presets += "--handbrake_preset \"#{preset}\" "
+end
+
 node[:transcode][:rss_sources].each do |source|
   bash "Execute gio_2012_controller for #{source}" do
-    code "gio_2012_controller --amqp-host 108.59.82.31 --source rss --rss-url #{source}"
+    code "gio_2012_controller --amqp-host 108.59.82.31 --source rss --rss-url #{source} #{presets}"
   end
 end
 

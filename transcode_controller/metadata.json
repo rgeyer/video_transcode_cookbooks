@@ -41,6 +41,18 @@
       ],
       "display_name": "Transcode AMQP Hostname"
     },
+    "transcode/handbrake_presets": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "array",
+      "recipes": [
+        "transcode_controller::do_create_jobs_from_rss"
+      ],
+      "display_name": "Transcoding HandBrake Presets"
+    },
     "cloud/google/store/key": {
       "required": "required",
       "calculated": false,

@@ -32,3 +32,9 @@ attribute "transcode/rss_sources",
   :required => "required",
   :type => "array",
   :recipes => ["transcode_controller::do_create_jobs_from_rss"]
+
+attribute "transcode/handbrake_presets",
+  :display_name => "Transcoding HandBrake Presets",
+  :required => "required",
+  :type => "array",
+  :recipes => ["transcode_controller::do_create_jobs_from_rss"]
