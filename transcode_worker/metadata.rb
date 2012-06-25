@@ -44,4 +44,4 @@ attribute "transcode/worker/log_level",
   :required => "optional",
   :choice => ["info", "error", "debug", "fatal", "warn"],
   :default => "info",
-  :recipes => ["transcode_controller::do_start_workers"]
+  :recipes => ["transcode_worker::do_start_workers"]

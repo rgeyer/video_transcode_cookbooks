@@ -18,7 +18,7 @@
       "default": "info",
       "type": "string",
       "recipes": [
-        "transcode_controller::do_start_workers"
+        "transcode_worker::do_start_workers"
       ],
       "display_name": "Transcode Worker Log Level"
     },
