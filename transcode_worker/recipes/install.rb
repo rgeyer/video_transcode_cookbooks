@@ -46,4 +46,12 @@ template ::File.join('/root', '.fog') do
   source 'dot_fog.erb'
 end
 
+# Make sure the worker is running by re-running the recipe every 2 minutes
+cron "Re-run transcode_worker::do_start_workers" do
+  minute "*/2"
+  user "root"
+  command "rs_run_recipe -n transcode_worker::do_start_workers 2>&1 > /var/log/rs_sys_reconverge.log"
+  action :create
+end
+
 rs_utils_marker :end
