@@ -28,7 +28,7 @@ rs_utils_marker :begin
 presets = ""
 
 node[:transcode][:handbrake_presets].each do |preset|
-  presets += "--handbrake_preset \"#{preset}\" "
+  presets += "--handbrake-preset \"#{preset}\" "
 end
 
 node[:transcode][:rss_sources].each do |source|
