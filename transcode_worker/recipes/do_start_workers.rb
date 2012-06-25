@@ -34,7 +34,7 @@ qty = worker_count - running_workers
 
 qty.times do |idx|
   bash "Start the #{idx}th worker" do
-    code "gio_2012_worker --amqp-host #{node[:transcode][:amqp][:host]} --gstorage-bucket #{node[:transcode][:gstore_bucket]} &"
+    code "gio_2012_worker --amqp-host #{node[:transcode][:amqp][:host]} --gstorage-bucket #{node[:transcode][:gstore_bucket]} --log-level #{node[:transcode][:worker][:log_level]} &"
   end
 end
 

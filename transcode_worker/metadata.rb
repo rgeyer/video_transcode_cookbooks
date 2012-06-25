@@ -38,3 +38,10 @@ attribute "transcode/worker/count",
   :required => "optional",
   :default => "1",
   :recipes => ["transcode_worker::do_start_workers"]
+
+attribute "transcode/worker/log_level",
+  :display_name => "Transcode Worker Log Level",
+  :required => "optional",
+  :choice => ["info", "error", "debug", "fatal", "warn"],
+  :default => "info",
+  :recipes => ["transcode_controller::do_start_workers"]

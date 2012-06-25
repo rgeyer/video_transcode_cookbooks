@@ -5,6 +5,23 @@
   "name": "transcode_worker",
   "maintainer_email": "me@ryangeyer.com",
   "attributes": {
+    "transcode/worker/log_level": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+        "info",
+        "error",
+        "debug",
+        "fatal",
+        "warn"
+      ],
+      "default": "info",
+      "type": "string",
+      "recipes": [
+        "transcode_controller::do_start_workers"
+      ],
+      "display_name": "Transcode Worker Log Level"
+    },
     "transcode/gstore_bucket": {
       "required": "required",
       "calculated": false,
