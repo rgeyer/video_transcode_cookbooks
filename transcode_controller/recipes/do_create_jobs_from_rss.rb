@@ -33,7 +33,7 @@ end
 
 node[:transcode][:rss_sources].each do |source|
   bash "Execute gio_2012_controller for #{source}" do
-    code "gio_2012_controller --amqp-host 108.59.82.31 --source rss --rss-url #{source} #{presets}"
+    code "gio_2012_controller --amqp-host \"#{node[:transcode][:amqp][:host]}\" --source rss --rss-url \"#{source}\" #{presets}"
   end
 end
 
