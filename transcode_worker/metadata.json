@@ -96,6 +96,7 @@
   "recommendations": {
   },
   "recipes": {
+    "transcode_worker::do_disable_workers_recoverge": "",
     "transcode_worker::do_stop_workers": "Stops all running transcoding workers",
     "transcode_worker::do_start_workers": "Starts the specified number of transcoding workers",
     "transcode_worker::install": "Installs the transcode worker gem and any required libs"
