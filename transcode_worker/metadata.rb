@@ -12,7 +12,7 @@ depends "rs_utils"
 recipe "transcode_worker::install", "Installs the transcode worker gem and any required libs"
 recipe "transcode_worker::do_start_workers", "Starts the specified number of transcoding workers"
 recipe "transcode_worker::do_stop_workers", "Stops all running transcoding workers"
-recipe "transcode_worker::do_disable_workers_recoverge", ""
+recipe "transcode_worker::do_disable_workers_reconverge", ""
 
 attribute "cloud/google/store/key",
   :display_name => "Google Storage API Key",
