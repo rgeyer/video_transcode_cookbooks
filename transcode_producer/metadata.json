@@ -1,93 +1,94 @@
 {
-  "dependencies": {
-    "rs_utils": ">= 0.0.0"
-  },
-  "name": "transcode_controller",
-  "maintainer_email": "me@ryangeyer.com",
-  "attributes": {
-    "cloud/google/store/secret": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "transcode_controller::install"
-      ],
-      "display_name": "Google Storage API Secret"
-    },
-    "transcode/rss_sources": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "array",
-      "recipes": [
-        "transcode_controller::do_create_jobs_from_rss"
-      ],
-      "display_name": "Transcoding RSS Sources"
-    },
-    "transcode/amqp/host": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "transcode_controller::do_create_jobs_from_rss"
-      ],
-      "display_name": "Transcode AMQP Hostname"
-    },
-    "transcode/handbrake_presets": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "array",
-      "recipes": [
-        "transcode_controller::do_create_jobs_from_rss"
-      ],
-      "display_name": "Transcoding HandBrake Presets"
-    },
-    "cloud/google/store/key": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "transcode_controller::install"
-      ],
-      "display_name": "Google Storage API Key"
-    }
-  },
-  "license": "All rights reserved",
-  "suggestions": {
-  },
-  "platforms": {
-    "ubuntu": ">= 0.0.0"
-  },
+  "name": "transcode_producer",
+  "description": "Installs/Configures transcode_producer",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\nThis depends upon an installation of ruby that's >= 1.8.7.  This cookbook has no dependencies upon any ruby cookbook\nand does not install any ruby packages.  Recommend that you include a recipe in your runlist/role/ServerTemplate that\ninstalls a suitable ruby environment before this is run.\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
   "maintainer": "Ryan J. Geyer",
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "version": "0.0.1",
+  "maintainer_email": "me@ryangeyer.com",
+  "license": "All rights reserved",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "centos": ">= 0.0.0"
+  },
+  "dependencies": {
+    "rightscale": ">= 0.0.0"
+  },
   "recommendations": {
   },
-  "recipes": {
-    "transcode_controller::install": "Installs the transcode controller gem and any required libs",
-    "transcode_controller::do_create_jobs_from_rss": "Executes gio_2012_controller once for each RSS feed that's supplied"
-  },
-  "groupings": {
+  "suggestions": {
   },
   "conflicting": {
   },
+  "providing": {
+  },
   "replacing": {
   },
-  "description": "Installs/Configures transcode_controller",
-  "providing": {
-  }
+  "attributes": {
+    "cloud/google/store/key": {
+      "display_name": "Google Storage API Key",
+      "required": "required",
+      "recipes": [
+        "transcode_producer::install"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloud/google/store/secret": {
+      "display_name": "Google Storage API Secret",
+      "required": "required",
+      "recipes": [
+        "transcode_producer::install"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "transcode/amqp/host": {
+      "display_name": "Transcode AMQP Hostname",
+      "required": "required",
+      "recipes": [
+        "transcode_producer::do_create_jobs_from_rss"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "transcode/rss_sources": {
+      "display_name": "Transcoding RSS Sources",
+      "required": "required",
+      "type": "array",
+      "recipes": [
+        "transcode_producer::do_create_jobs_from_rss"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false
+    },
+    "transcode/handbrake_presets": {
+      "display_name": "Transcoding HandBrake Presets",
+      "required": "required",
+      "type": "array",
+      "recipes": [
+        "transcode_producer::do_create_jobs_from_rss"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "transcode_producer::install": "Installs the transcode controller gem and any required libs",
+    "transcode_producer::do_create_jobs_from_rss": "Executes gio_2012_controller once for each RSS feed that's supplied"
+  },
+  "version": "0.0.1"
 }
