@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: transcode_controller
+# Cookbook Name:: transcode_producer
 # Recipe:: install
 #
 # Copyright (c) 2012 Ryan J. Geyer
@@ -23,21 +23,15 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
-gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'controller-0.0.1.gem')
+# See the "Dependencies" section of the readme RE: prerequisite ruby environment
 
-%w{libopenssl-ruby1.8 libreadline-ruby1.8 libruby1.8 libshadow-ruby1.8 ruby ruby1.8 ruby1.8-dev}.each do |p|
-  package p do
-    action :install
-  end
-end
+gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'transcode_producer-0.0.1.gem')
 
-bash "Reset RubyGem sources to include only http://rubygems.org/ and install controller gem" do
-  code <<EOF
-for i in `gem sources | awk '{if (NR > 2) {print}}'`; do gem sources -r $i; done
-gem install #{gemfile} --no-ri --no-rdoc
-EOF
+gem_package 'transcode_producer' do
+  source gemfile
+  action :install
 end
 
 template ::File.join('/root', '.fog') do
@@ -46,4 +40,4 @@ template ::File.join('/root', '.fog') do
   source 'dot_fog.erb'
 end
 
-rs_utils_marker :end
+rightscale_marker :end

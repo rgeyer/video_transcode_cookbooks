@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: transcode_controller
+# Cookbook Name:: transcode_producer
 # Recipe:: do_create_jobs_from_rss
 #
 # Copyright (c) 2012 Ryan J. Geyer
@@ -23,7 +23,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 presets = ""
 
@@ -32,9 +32,9 @@ node[:transcode][:handbrake_presets].each do |preset|
 end
 
 node[:transcode][:rss_sources].each do |source|
-  bash "Execute gio_2012_controller for #{source}" do
-    code "gio_2012_controller --amqp-host \"#{node[:transcode][:amqp][:host]}\" --source rss --rss-url \"#{source}\" #{presets}"
+  bash "Execute transcode_producer for #{source}" do
+    code "transcode_producer --amqp-host \"#{node[:transcode][:amqp][:host]}\" --source rss --rss-url \"#{source}\" #{presets}"
   end
 end
 
-rs_utils_marker :end
+rightscale_marker :end
