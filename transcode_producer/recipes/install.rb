@@ -25,7 +25,7 @@
 
 rightscale_marker :begin
 
-# See the "Dependencies" section of the readme RE: prerequisite ruby environment
+# See the "Requirements" section of the readme RE: prerequisite ruby environment
 
 gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'transcode_producer-0.0.1.gem')
 
