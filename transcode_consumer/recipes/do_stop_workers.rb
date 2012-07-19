@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: transcode_worker
-# Recipe:: install
+# Cookbook Name:: transcode_consumer
+# Recipe:: do_stop_workers
 #
 # Copyright (c) 2012 Ryan J. Geyer
 #
@@ -23,35 +23,11 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
-gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'worker-0.0.1.gem')
-
-%w{libopenssl-ruby1.8 libreadline-ruby1.8 libruby1.8 libshadow-ruby1.8 ruby ruby1.8 ruby1.8-dev}.each do |p|
-  package p do
-    action :install
-  end
+bash "Stop all running transcode_consumers" do
+  code "killall -9 transcode_consumer"
+  returns [0,1]
 end
 
-bash "Reset RubyGem sources to include only http://rubygems.org/ and install worker gem" do
-  code <<EOF
-for i in `gem sources | awk '{if (NR > 2) {print}}'`; do gem sources -r $i; done
-gem install #{gemfile} --no-ri --no-rdoc
-EOF
-end
-
-template ::File.join('/root', '.fog') do
-  owner 'root'
-  mode 00600
-  source 'dot_fog.erb'
-end
-
-# Make sure the worker is running by re-running the recipe every 2 minutes
-cron "Re-run transcode_worker::do_start_workers" do
-  minute "*/2"
-  user "root"
-  command "rs_run_recipe -n transcode_worker::do_start_workers 2>&1 > /var/log/rs_sys_reconverge.log"
-  action :nothing
-end
-
-rs_utils_marker :end
+rightscale_marker :end

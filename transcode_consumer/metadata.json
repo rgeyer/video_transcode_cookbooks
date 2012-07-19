@@ -1,0 +1,114 @@
+{
+  "name": "transcode_consumer",
+  "description": "Installs/Configures transcode_consumer",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\nThis depends upon an installation of ruby that's >= 1.8.7.  This cookbook has no dependencies upon any ruby cookbook\nand does not install any ruby packages.  Recommend that you include a recipe in your runlist/role/ServerTemplate that\ninstalls a suitable ruby environment before this is run.\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "maintainer": "Ryan J. Geyer",
+  "maintainer_email": "me@ryangeyer.com",
+  "license": "All rights reserved",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "centos": ">= 0.0.0"
+  },
+  "dependencies": {
+    "rightscale": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "cloud/google/store/key": {
+      "display_name": "Google Storage API Key",
+      "required": "required",
+      "recipes": [
+        "transcode_consumer::install"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloud/google/store/secret": {
+      "display_name": "Google Storage API Secret",
+      "required": "required",
+      "recipes": [
+        "transcode_consumer::install"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "transcode/amqp/host": {
+      "display_name": "Transcode AMQP Hostname",
+      "required": "required",
+      "recipes": [
+        "transcode_consumer::do_start_workers"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "transcode/gstore_bucket": {
+      "display_name": "Transcoding Destination Google Storage Bucket",
+      "required": "required",
+      "recipes": [
+        "transcode_consumer::do_start_workers"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "transcode/worker/count": {
+      "display_name": "Transcode Worker Count",
+      "required": "optional",
+      "default": "1",
+      "recipes": [
+        "transcode_consumer::do_start_workers"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "transcode/worker/log_level": {
+      "display_name": "Transcode Worker Log Level",
+      "required": "optional",
+      "choice": [
+        "info",
+        "error",
+        "debug",
+        "fatal",
+        "warn"
+      ],
+      "default": "info",
+      "recipes": [
+        "transcode_consumer::do_start_workers"
+      ],
+      "calculated": false,
+      "type": "string"
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "transcode_consumer::install": "Installs the transcode worker gem and any required libs",
+    "transcode_consumer::do_start_workers": "Starts the specified number of transcoding workers",
+    "transcode_consumer::do_stop_workers": "Stops all running transcoding workers",
+    "transcode_consumer::do_disable_workers_reconverge": ""
+  },
+  "version": "0.0.1"
+}

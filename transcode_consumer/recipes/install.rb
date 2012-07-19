@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: transcode_worker
-# Recipe:: do_stop_workers
+# Cookbook Name:: transcode_consumer
+# Recipe:: install
 #
 # Copyright (c) 2012 Ryan J. Geyer
 #
@@ -23,11 +23,32 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
-bash "Stop all running gio_2012_workers" do
-  code "killall -9 gio_2012_worker"
-  returns [0,1]
+# See the "Requirements" section of the readme RE: prerequisite ruby environment
+
+gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'transcode_consumer-0.0.1.gem')
+
+gem_package 'transcode_consumer' do
+  source gemfile
+  action :install
 end
 
-rs_utils_marker :end
+template ::File.join('/root', '.fog') do
+  owner 'root'
+  mode 00600
+  source 'dot_fog.erb'
+end
+
+# Make sure the worker is running by re-running the recipe every 2 minutes
+
+# TODO: Note that the action is :nothing, this is intentional cause it can DDoS RightNet, probably need to think of a better
+# approach to make sure the consumer process(es) are running.
+cron "Re-run transcode_consumer::do_start_workers" do
+  minute "*/2"
+  user "root"
+  command "rs_run_recipe -n transcode_consumer::do_start_workers 2>&1 > /var/log/rs_sys_reconverge.log"
+  action :nothing
+end
+
+rightscale_marker :end

@@ -1,0 +1,12 @@
+= DESCRIPTION:
+
+= REQUIREMENTS:
+
+This depends upon an installation of ruby that's >= 1.8.7.  This cookbook has no dependencies upon any ruby cookbook
+and does not install any ruby packages.  Recommend that you include a recipe in your runlist/role/ServerTemplate that
+installs a suitable ruby environment before this is run.
+
+= ATTRIBUTES:
+
+= USAGE:
+

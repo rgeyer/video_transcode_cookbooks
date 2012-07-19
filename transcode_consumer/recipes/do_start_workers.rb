@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: transcode_worker
+# Cookbook Name:: transcode_consumer
 # Recipe:: do_start_workers
 #
 # Copyright (c) 2012 Ryan J. Geyer
@@ -23,19 +23,19 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-include_recipe 'transcode_worker::install'
+include_recipe 'transcode_consumer::install'
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
-running_workers = `pgrep -f gio_2012_worker | wc -l`.to_i - 1
-worker_count = node[:transcode][:worker][:count].to_i
+running_workers = `pgrep -f transcode_consumer | wc -l`.to_i - 1
+worker_count = node[:transcode][:consumer][:count].to_i
 
 qty = worker_count - running_workers
 
 qty.times do |idx|
   bash "Start the #{idx}th worker" do
-    code "gio_2012_worker --amqp-host #{node[:transcode][:amqp][:host]} --gstorage-bucket #{node[:transcode][:gstore_bucket]} --log-level #{node[:transcode][:worker][:log_level]} &"
+    code "transcode_consumer --amqp-host #{node[:transcode][:amqp][:host]} --gstorage-bucket #{node[:transcode][:gstore_bucket]} --log-level #{node[:transcode][:worker][:log_level]} &"
   end
 end
 
-rs_utils_marker :end
+rightscale_marker :end
