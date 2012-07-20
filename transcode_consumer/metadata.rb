@@ -13,6 +13,7 @@ end
   depends dep
 end
 
+recipe "transcode_consumer::default", "Sets some prerequisite info for RVM"
 recipe "transcode_consumer::install", "Installs the transcode consumer gem and any required libs"
 recipe "transcode_consumer::do_start_consumers", "Starts the specified number of transcoding consumers"
 recipe "transcode_consumer::do_stop_consumers", "Stops all running transcoding consumers"

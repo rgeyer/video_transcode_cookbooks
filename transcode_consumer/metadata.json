@@ -1,7 +1,7 @@
 {
   "name": "transcode_consumer",
   "description": "Installs/Configures transcode_consumer",
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\nThis depends upon an installation of ruby that's >= 1.8.7.  This cookbook has no dependencies upon any ruby cookbook\nand does not install any ruby packages.  Recommend that you include a recipe in your runlist/role/ServerTemplate that\ninstalls a suitable ruby environment before this is run.\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\nThis depends upon an installation of ruby that's >= 1.8.7.\n\nThe cookbook depends upon the RVM cookbook which will automatically install and configure the right ruby environment.\nYou can change the exact ruby version by changing node['transcode']['consumer']['ruby'], but tread carefully.\n\nThis also depends upon HandBrake being installed.  Check out my handbrake cookbook to handle that installation.\nhttps://github.com/rgeyer/cookbooks_linux/tree/master/cookbooks/handbrake\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
   "maintainer": "Ryan J. Geyer",
   "maintainer_email": "me@ryangeyer.com",
   "license": "All rights reserved",
@@ -119,6 +119,7 @@
   "groupings": {
   },
   "recipes": {
+    "transcode_consumer::default": "Sets some prerequisite info for RVM",
     "transcode_consumer::install": "Installs the transcode consumer gem and any required libs",
     "transcode_consumer::do_start_consumers": "Starts the specified number of transcoding consumers",
     "transcode_consumer::do_stop_consumers": "Stops all running transcoding consumers",

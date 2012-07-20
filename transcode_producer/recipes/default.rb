@@ -1,5 +1,6 @@
 #
-# Cookbook Name:: transcode_producer
+# Cookbook Name:: transcode_consumer
+# Recipe:: default
 #
 # Copyright (c) 2012 Ryan J. Geyer
 #
@@ -22,4 +23,9 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-default['transcode']['producer']['ruby'] = 'ruby-1.8.7-p370'
+rightscale_marker :begin
+
+node['rvm']['default_ruby'] = "#{node['transcode']['producer']['ruby']}@transcode_producer"
+node['rvm']['gem_package']['rvm_string'] = "#{node['transcode']['producer']['ruby']}@transcode_producer"
+
+rightscale_marker :end

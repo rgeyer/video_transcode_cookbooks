@@ -13,6 +13,7 @@ end
   depends dep
 end
 
+recipe "transcode_producer::default", "Sets some prerequisite info for RVM"
 recipe "transcode_producer::install", "Installs the transcode controller gem and any required libs"
 recipe "transcode_producer::do_create_jobs_from_rss", "Executes transcode_producer once for each RSS feed that's supplied"
 

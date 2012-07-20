@@ -25,6 +25,3 @@
 default['transcode']['consumer']['count'] = '1'
 default['transcode']['consumer']['log_level'] = 'debug'
 default['transcode']['consumer']['ruby'] = 'ruby-1.8.7-p370'
-
-node['rvm']['default_ruby'] = "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
-node['rvm']['gem_package']['rvm_string'] = "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
