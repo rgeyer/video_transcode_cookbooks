@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: transcode_consumer
+# Cookbook Name:: transcode_producer
 #
 # Copyright (c) 2012 Ryan J. Geyer
 #
@@ -22,6 +22,4 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-default['transcode']['consumer']['count'] = '1'
-default['transcode']['consumer']['log_level'] = 'debug'
-default['transcode']['consumer']['ruby'] = 'ruby-1.8.7-p370'
+default['transcode']['producer']['ruby'] = 'ruby-1.8.7-p370'
