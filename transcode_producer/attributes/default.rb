@@ -23,3 +23,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 default['transcode']['producer']['ruby'] = 'ruby-1.8.7-p370'
+
+node['rvm']['default_ruby'] = "#{node['transcode']['producer']['ruby']}@transcode_producer"
+node['rvm']['gem_package']['rvm_string'] = "#{node['transcode']['producer']['ruby']}@transcode_producer"
