@@ -25,6 +25,8 @@
 
 rightscale_marker :begin
 
+include_recipe 'transcode_consumer::default'
+
 rvm_shell "Stop all running transcode_consumers" do
   ruby_string "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
   code "killall -9 transcode_consumer"

@@ -25,12 +25,16 @@
 
 rightscale_marker :begin
 
-include_recipe "rvm::default"
-include_recipe "rvm::gem_package"
+include_recipe "transcode_consumer::default"
+
+rvm_environment "#{node['transcode']['consumer']['ruby']}@transcode_consumer" do
+  action :install
+end
 
 gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'transcode_consumer-0.0.1.gem')
 
-gem_package 'transcode_consumer' do
+rvm_gem 'transcode_consumer' do
+  ruby_string "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
   source gemfile
   action :install
 end

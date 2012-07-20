@@ -23,9 +23,9 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-include_recipe 'transcode_consumer::install'
-
 rightscale_marker :begin
+
+include_recipe 'transcode_consumer::install'
 
 running_workers = `pgrep -f transcode_consumer | wc -l`.to_i - 1
 worker_count = node['transcode']['consumer']['count'].to_i

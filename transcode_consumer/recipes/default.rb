@@ -25,7 +25,9 @@
 
 rightscale_marker :begin
 
-node['rvm']['default_ruby'] = "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
+node['rvm']['default_ruby'] = "system"
 node['rvm']['gem_package']['rvm_string'] = "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
+
+include_recipe "rvm::default"
 
 rightscale_marker :end
