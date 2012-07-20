@@ -9,12 +9,12 @@ version          "0.0.1"
   supports os
 end
 
-%w{rightscale}.each do |dep|
+%w{rightscale rvm}.each do |dep|
   depends dep
 end
 
 recipe "transcode_producer::install", "Installs the transcode controller gem and any required libs"
-recipe "transcode_producer::do_create_jobs_from_rss", "Executes gio_2012_controller once for each RSS feed that's supplied"
+recipe "transcode_producer::do_create_jobs_from_rss", "Executes transcode_producer once for each RSS feed that's supplied"
 
 attribute "cloud/google/store/key",
   :display_name => "Google Storage API Key",

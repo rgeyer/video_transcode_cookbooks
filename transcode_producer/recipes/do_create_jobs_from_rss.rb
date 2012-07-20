@@ -27,13 +27,14 @@ rightscale_marker :begin
 
 presets = ""
 
-node[:transcode][:handbrake_presets].each do |preset|
+node['transcode']['handbrake_presets'].each do |preset|
   presets += "--handbrake-preset \"#{preset}\" "
 end
 
-node[:transcode][:rss_sources].each do |source|
-  bash "Execute transcode_producer for #{source}" do
-    code "transcode_producer --amqp-host \"#{node[:transcode][:amqp][:host]}\" --source rss --rss-url \"#{source}\" #{presets}"
+node['transcode']['rss_sources'].each do |source|
+  rvm_shell "Execute transcode_producer for #{source}" do
+    ruby_string "#{node['transcode']['producer']['ruby']}@transcode_producer"
+    code "transcode_producer --amqp-host \"#{node['transcode']['amqp']['host']}\" --source rss --rss-url \"#{source}\" #{presets}"
   end
 end
 

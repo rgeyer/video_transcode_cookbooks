@@ -25,7 +25,11 @@
 
 rightscale_marker :begin
 
-# See the "Requirements" section of the readme RE: prerequisite ruby environment
+node['rvm']['default_ruby'] = "#{node['transcode']['producer']['ruby']}@transcode_producer"
+node['rvm']['gem_package']['rvm_string'] = "#{node['transcode']['producer']['ruby']}@transcode_producer"
+
+include_recipe "rvm::default"
+include_recipe "rvm::gem_package"
 
 gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'transcode_producer-0.0.1.gem')
 

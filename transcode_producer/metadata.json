@@ -1,7 +1,7 @@
 {
   "name": "transcode_producer",
   "description": "Installs/Configures transcode_producer",
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\nThis depends upon an installation of ruby that's >= 1.8.7.  This cookbook has no dependencies upon any ruby cookbook\nand does not install any ruby packages.  Recommend that you include a recipe in your runlist/role/ServerTemplate that\ninstalls a suitable ruby environment before this is run.\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n\nThis depends upon an installation of ruby that's >= 1.8.7.\n\nThe cookbook depends upon the RVM cookbook which will automatically install and configure the right ruby environment.\nYou can change the exact ruby version by changing node['transcode']['producer']['ruby'], but tread carefully.\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
   "maintainer": "Ryan J. Geyer",
   "maintainer_email": "me@ryangeyer.com",
   "license": "All rights reserved",
@@ -10,7 +10,8 @@
     "centos": ">= 0.0.0"
   },
   "dependencies": {
-    "rightscale": ">= 0.0.0"
+    "rightscale": ">= 0.0.0",
+    "rvm": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -88,7 +89,7 @@
   },
   "recipes": {
     "transcode_producer::install": "Installs the transcode controller gem and any required libs",
-    "transcode_producer::do_create_jobs_from_rss": "Executes gio_2012_controller once for each RSS feed that's supplied"
+    "transcode_producer::do_create_jobs_from_rss": "Executes transcode_producer once for each RSS feed that's supplied"
   },
   "version": "0.0.1"
 }
