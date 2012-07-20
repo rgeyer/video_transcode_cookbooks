@@ -9,14 +9,14 @@ version          "0.0.1"
   supports os
 end
 
-%w{rightscale}.each do |dep|
+%w{rightscale rvm}.each do |dep|
   depends dep
 end
 
-recipe "transcode_consumer::install", "Installs the transcode worker gem and any required libs"
-recipe "transcode_consumer::do_start_workers", "Starts the specified number of transcoding workers"
-recipe "transcode_consumer::do_stop_workers", "Stops all running transcoding workers"
-recipe "transcode_consumer::do_disable_workers_reconverge", ""
+recipe "transcode_consumer::install", "Installs the transcode consumer gem and any required libs"
+recipe "transcode_consumer::do_start_consumers", "Starts the specified number of transcoding consumers"
+recipe "transcode_consumer::do_stop_consumers", "Stops all running transcoding consumers"
+recipe "transcode_consumer::do_disable_consumers_reconverge", ""
 
 attribute "cloud/google/store/key",
   :display_name => "Google Storage API Key",
@@ -31,22 +31,27 @@ attribute "cloud/google/store/secret",
 attribute "transcode/amqp/host",
   :display_name => "Transcode AMQP Hostname",
   :required => "required",
-  :recipes => ["transcode_consumer::do_start_workers"]
+  :recipes => ["transcode_consumer::do_start_consumers"]
 
 attribute "transcode/gstore_bucket",
   :display_name => "Transcoding Destination Google Storage Bucket",
   :required => "required",
-  :recipes => ["transcode_consumer::do_start_workers"]
+  :recipes => ["transcode_consumer::do_start_consumers"]
 
-attribute "transcode/worker/count",
-  :display_name => "Transcode Worker Count",
+attribute "transcode/consumer/count",
+  :display_name => "Transcode Consumer Count",
   :required => "optional",
   :default => "1",
-  :recipes => ["transcode_consumer::do_start_workers"]
+  :recipes => ["transcode_consumer::do_start_consumers"]
 
-attribute "transcode/worker/log_level",
-  :display_name => "Transcode Worker Log Level",
+attribute "transcode/consumer/log_level",
+  :display_name => "Transcode Consumer Log Level",
   :required => "optional",
   :choice => ["info", "error", "debug", "fatal", "warn"],
   :default => "info",
-  :recipes => ["transcode_consumer::do_start_workers"]
+  :recipes => ["transcode_consumer::do_start_consumers"]
+
+attribute "transcode/consumer/ruby",
+  :display_name => "Transcode Consumer Ruby Version (Installed by RVM)",
+  :required => "optional",
+  :default => ""

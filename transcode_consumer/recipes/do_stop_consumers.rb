@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: transcode_consumer
-# Recipe:: do_start_workers
+# Recipe:: do_stop_workers
 #
 # Copyright (c) 2012 Ryan J. Geyer
 #
@@ -23,19 +23,12 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-include_recipe 'transcode_consumer::install'
-
 rightscale_marker :begin
 
-running_workers = `pgrep -f transcode_consumer | wc -l`.to_i - 1
-worker_count = node[:transcode][:consumer][:count].to_i
-
-qty = worker_count - running_workers
-
-qty.times do |idx|
-  bash "Start the #{idx}th worker" do
-    code "transcode_consumer --amqp-host #{node[:transcode][:amqp][:host]} --gstorage-bucket #{node[:transcode][:gstore_bucket]} --log-level #{node[:transcode][:worker][:log_level]} &"
-  end
+rvm_shell "Stop all running transcode_consumers" do
+  ruby_string "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
+  code "killall -9 transcode_consumer"
+  returns [0,1]
 end
 
 rightscale_marker :end

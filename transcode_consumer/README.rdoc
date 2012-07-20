@@ -2,9 +2,13 @@
 
 = REQUIREMENTS:
 
-This depends upon an installation of ruby that's >= 1.8.7.  This cookbook has no dependencies upon any ruby cookbook
-and does not install any ruby packages.  Recommend that you include a recipe in your runlist/role/ServerTemplate that
-installs a suitable ruby environment before this is run.
+This depends upon an installation of ruby that's >= 1.8.7.
+
+The cookbook depends upon the RVM cookbook which will automatically install and configure the right ruby environment.
+You can change the exact ruby version by changing node['transcode']['consumer']['ruby'], but tread carefully.
+
+This also depends upon HandBrake being installed.  Check out my handbrake cookbook to handle that installation.
+https://github.com/rgeyer/cookbooks_linux/tree/master/cookbooks/handbrake
 
 = ATTRIBUTES:
 

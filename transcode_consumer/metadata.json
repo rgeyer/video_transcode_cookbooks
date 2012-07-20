@@ -10,7 +10,8 @@
     "centos": ">= 0.0.0"
   },
   "dependencies": {
-    "rightscale": ">= 0.0.0"
+    "rightscale": ">= 0.0.0",
+    "rvm": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -51,7 +52,7 @@
       "display_name": "Transcode AMQP Hostname",
       "required": "required",
       "recipes": [
-        "transcode_consumer::do_start_workers"
+        "transcode_consumer::do_start_consumers"
       ],
       "choice": [
 
@@ -63,7 +64,7 @@
       "display_name": "Transcoding Destination Google Storage Bucket",
       "required": "required",
       "recipes": [
-        "transcode_consumer::do_start_workers"
+        "transcode_consumer::do_start_consumers"
       ],
       "choice": [
 
@@ -71,12 +72,12 @@
       "calculated": false,
       "type": "string"
     },
-    "transcode/worker/count": {
-      "display_name": "Transcode Worker Count",
+    "transcode/consumer/count": {
+      "display_name": "Transcode Consumer Count",
       "required": "optional",
       "default": "1",
       "recipes": [
-        "transcode_consumer::do_start_workers"
+        "transcode_consumer::do_start_consumers"
       ],
       "choice": [
 
@@ -84,8 +85,8 @@
       "calculated": false,
       "type": "string"
     },
-    "transcode/worker/log_level": {
-      "display_name": "Transcode Worker Log Level",
+    "transcode/consumer/log_level": {
+      "display_name": "Transcode Consumer Log Level",
       "required": "optional",
       "choice": [
         "info",
@@ -96,19 +97,32 @@
       ],
       "default": "info",
       "recipes": [
-        "transcode_consumer::do_start_workers"
+        "transcode_consumer::do_start_consumers"
       ],
       "calculated": false,
       "type": "string"
+    },
+    "transcode/consumer/ruby": {
+      "display_name": "Transcode Consumer Ruby Version (Installed by RVM)",
+      "required": "optional",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "recipes": [
+
+      ]
     }
   },
   "groupings": {
   },
   "recipes": {
-    "transcode_consumer::install": "Installs the transcode worker gem and any required libs",
-    "transcode_consumer::do_start_workers": "Starts the specified number of transcoding workers",
-    "transcode_consumer::do_stop_workers": "Stops all running transcoding workers",
-    "transcode_consumer::do_disable_workers_reconverge": ""
+    "transcode_consumer::install": "Installs the transcode consumer gem and any required libs",
+    "transcode_consumer::do_start_consumers": "Starts the specified number of transcoding consumers",
+    "transcode_consumer::do_stop_consumers": "Stops all running transcoding consumers",
+    "transcode_consumer::do_disable_consumers_reconverge": ""
   },
   "version": "0.0.1"
 }
