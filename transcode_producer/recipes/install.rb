@@ -25,10 +25,10 @@
 
 rightscale_marker :begin
 
-include_recipe "rvm::default"
+include_recipe "transcode_producer::default"
 
 rvm_environment "#{node['transcode']['producer']['ruby']}@transcode_producer" do
-  action :install
+  action :create
 end
 
 gemfile = ::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'transcode_producer-0.0.1.gem')

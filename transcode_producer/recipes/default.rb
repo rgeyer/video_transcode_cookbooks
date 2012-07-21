@@ -29,5 +29,6 @@ node['rvm']['default_ruby'] = "system"
 node['rvm']['gem_package']['rvm_string'] = "#{node['transcode']['producer']['ruby']}@transcode_producer"
 
 include_recipe "rvm::default"
+include_recipe "rvm::system_install"
 
 rightscale_marker :end
