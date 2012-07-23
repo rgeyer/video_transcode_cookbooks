@@ -55,4 +55,5 @@ attribute "transcode/consumer/log_level",
 attribute "transcode/consumer/ruby",
   :display_name => "Transcode Consumer Ruby Version (Installed by RVM)",
   :required => "optional",
-  :default => ""
+  :default => "ruby-1.8.7-p370",
+  :recipes => ["transcode_consumer::default", "transcode_consumer::install"]

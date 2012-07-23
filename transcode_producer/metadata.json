@@ -83,6 +83,20 @@
 
       ],
       "calculated": false
+    },
+    "transcode/producer/ruby": {
+      "display_name": "Transcode Consumer Ruby Version (Installed by RVM)",
+      "required": "optional",
+      "default": "ruby-1.8.7-p370",
+      "recipes": [
+        "transcode_producer::default",
+        "transcode_producer::install"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
     }
   },
   "groupings": {

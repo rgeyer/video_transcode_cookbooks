@@ -43,3 +43,9 @@ attribute "transcode/handbrake_presets",
   :required => "required",
   :type => "array",
   :recipes => ["transcode_producer::do_create_jobs_from_rss"]
+
+attribute "transcode/producer/ruby",
+  :display_name => "Transcode Consumer Ruby Version (Installed by RVM)",
+  :required => "optional",
+  :default => "ruby-1.8.7-p370",
+  :recipes => ["transcode_producer::default", "transcode_producer::install"]

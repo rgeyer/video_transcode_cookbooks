@@ -30,17 +30,4 @@ node['rvm']['default_ruby'] = "system"
 include_recipe "rvm::default"
 include_recipe "rvm::system_install"
 
-# This is a RightScale CentOS 6.2 - RightLink 5.8 (Beta) concession.  Without doing this
-# thunker loses it's mind and you can't SSH in even though the environment seems sane.
-#
-#RightScale-Administrators-MacBook-Pro-2:~ ryangeyer$ ssh rightscale@50.112.211.192
-#/opt/rightscale/sandbox/lib/ruby/site_ruby/1.8/rubygems.rb:779:in `report_activate_error': Could not find RubyGem eventmachine (>= 0) (Gem::LoadError)
-#	from /opt/rightscale/sandbox/lib/ruby/site_ruby/1.8/rubygems.rb:214:in `activate'
-#	from /opt/rightscale/sandbox/lib/ruby/site_ruby/1.8/rubygems.rb:1082:in `gem'
-#	from /opt/rightscale/right_link/lib/gem_dependencies.rb:39
-#	from /opt/rightscale/right_link/bin/rs_thunk.rb:26:in `require'
-#	from /opt/rightscale/right_link/bin/rs_thunk.rb:26
-#Connection to 50.112.211.192 closed.
-rvm_default_ruby "system"
-
 rightscale_marker :end
