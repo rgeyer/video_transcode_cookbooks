@@ -33,9 +33,9 @@ worker_count = node['transcode']['consumer']['count'].to_i
 qty = worker_count - running_workers
 
 qty.times do |idx|
-  rvm_shell "Start the #{idx}th worker" do
+  rvm_shell "Start the #{idx}th consumer" do
     ruby_string "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
-    code "transcode_consumer --amqp-host #{node['transcode']['amqp']['host']} --gstorage-bucket #{node['transcode']['gstore_bucket']} --log-level #{node['transcode']['worker']['log_level']} &"
+    code "transcode_consumer --amqp-host #{node['transcode']['amqp']['host']} --gstorage-bucket #{node['transcode']['gstore_bucket']} --log-level #{node['transcode']['consumer']['log_level']} &"
   end
 end
 
