@@ -24,44 +24,8 @@
   "replacing": {
   },
   "attributes": {
-    "cloud/google/store/key": {
-      "display_name": "Google Storage API Key",
-      "required": "required",
-      "recipes": [
-        "transcode_consumer::install"
-      ],
-      "choice": [
-
-      ],
-      "calculated": false,
-      "type": "string"
-    },
-    "cloud/google/store/secret": {
-      "display_name": "Google Storage API Secret",
-      "required": "required",
-      "recipes": [
-        "transcode_consumer::install"
-      ],
-      "choice": [
-
-      ],
-      "calculated": false,
-      "type": "string"
-    },
     "transcode/amqp/host": {
       "display_name": "Transcode AMQP Hostname",
-      "required": "required",
-      "recipes": [
-        "transcode_consumer::do_start_consumers"
-      ],
-      "choice": [
-
-      ],
-      "calculated": false,
-      "type": "string"
-    },
-    "transcode/gstore_bucket": {
-      "display_name": "Transcoding Destination Google Storage Bucket",
       "required": "required",
       "recipes": [
         "transcode_consumer::do_start_consumers"
