@@ -25,6 +25,9 @@
 
 rightscale_marker :begin
 
+# This not only ensures that the gem is installed, but that the RVM recipes and environment are included
+include_recipe "transcode_producer::install"
+
 presets = ""
 
 node['transcode']['handbrake_presets'].each do |preset|
