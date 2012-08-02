@@ -52,10 +52,12 @@ rvm_gem 'transcode_producer' do
   action :install
 end
 
+# Temporarily disable the use of the gstore creds (note action :nothing)
 template ::File.join('/root', '.fog') do
   owner 'root'
   mode 00600
   source 'dot_fog.erb'
+  action :nothing
 end
 
 rightscale_marker :end

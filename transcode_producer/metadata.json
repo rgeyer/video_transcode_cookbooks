@@ -24,30 +24,6 @@
   "replacing": {
   },
   "attributes": {
-    "cloud/google/store/key": {
-      "display_name": "Google Storage API Key",
-      "required": "required",
-      "recipes": [
-        "transcode_producer::install"
-      ],
-      "choice": [
-
-      ],
-      "calculated": false,
-      "type": "string"
-    },
-    "cloud/google/store/secret": {
-      "display_name": "Google Storage API Secret",
-      "required": "required",
-      "recipes": [
-        "transcode_producer::install"
-      ],
-      "choice": [
-
-      ],
-      "calculated": false,
-      "type": "string"
-    },
     "transcode/amqp/host": {
       "display_name": "Transcode AMQP Hostname",
       "required": "required",
