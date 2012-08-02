@@ -72,6 +72,19 @@
       ],
       "calculated": false
     },
+    "transcode/output_path": {
+      "display_name": "Transcoding Destination local filesystem path",
+      "required": "optional",
+      "default": "/mnt/ephemeral/transcode",
+      "recipes": [
+        "transcode_producer::do_create_jobs_from_rss"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
     "transcode/handbrake_presets": {
       "display_name": "Transcoding HandBrake Presets",
       "required": "required",

@@ -19,25 +19,25 @@ recipe "transcode_consumer::do_start_consumers", "Starts the specified number of
 recipe "transcode_consumer::do_stop_consumers", "Stops all running transcoding consumers"
 recipe "transcode_consumer::do_disable_consumers_reconverge", ""
 
-attribute "cloud/google/store/key",
-  :display_name => "Google Storage API Key",
-  :required => "required",
-  :recipes => ["transcode_consumer::install"]
-
-attribute "cloud/google/store/secret",
-  :display_name => "Google Storage API Secret",
-  :required => "required",
-  :recipes => ["transcode_consumer::install"]
+#attribute "cloud/google/store/key",
+#  :display_name => "Google Storage API Key",
+#  :required => "required",
+#  :recipes => ["transcode_consumer::install"]
+#
+#attribute "cloud/google/store/secret",
+#  :display_name => "Google Storage API Secret",
+#  :required => "required",
+#  :recipes => ["transcode_consumer::install"]
 
 attribute "transcode/amqp/host",
   :display_name => "Transcode AMQP Hostname",
   :required => "required",
   :recipes => ["transcode_consumer::do_start_consumers"]
 
-attribute "transcode/gstore_bucket",
-  :display_name => "Transcoding Destination Google Storage Bucket",
-  :required => "required",
-  :recipes => ["transcode_consumer::do_start_consumers"]
+#attribute "transcode/gstore_bucket",
+#  :display_name => "Transcoding Destination Google Storage Bucket",
+#  :required => "required",
+#  :recipes => ["transcode_consumer::do_start_consumers"]
 
 attribute "transcode/consumer/count",
   :display_name => "Transcode Consumer Count",

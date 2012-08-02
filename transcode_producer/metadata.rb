@@ -38,6 +38,18 @@ attribute "transcode/rss_sources",
   :type => "array",
   :recipes => ["transcode_producer::do_create_jobs_from_rss"]
 
+#attribute "transcode/output_bucket",
+#  :display_name => "Output Bucket Name",
+#  :description => "The name of the Google Storage bucket where the transcoded files will be uploaded",
+#  :required => "optional",
+#  :recipes => ["transcode_producer::do_create_jobs_from_rss"]
+
+attribute "transcode/output_path",
+  :display_name => "Transcoding Destination local filesystem path",
+  :required => "optional",
+  :default => "/mnt/ephemeral/transcode",
+  :recipes => ["transcode_producer::do_create_jobs_from_rss"]
+
 attribute "transcode/handbrake_presets",
   :display_name => "Transcoding HandBrake Presets",
   :required => "required",

@@ -34,10 +34,12 @@ node['transcode']['handbrake_presets'].each do |preset|
   presets += "--handbrake-preset \"#{preset}\" "
 end
 
+output_path = node['transcode']['output_path']
+
 node['transcode']['rss_sources'].each do |source|
   rvm_shell "Execute transcode_producer for #{source}" do
     ruby_string "#{node['transcode']['producer']['ruby']}@transcode_producer"
-    code "transcode_producer --amqp-host \"#{node['transcode']['amqp']['host']}\" --source rss --rss-url \"#{source}\" #{presets}"
+    code "transcode_producer --amqp-host \"#{node['transcode']['amqp']['host']}\" --input-url \"#{source}\" --output-path #{output_path} #{presets}"
   end
 end
 
