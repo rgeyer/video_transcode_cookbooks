@@ -27,15 +27,21 @@ rightscale_marker :begin
 
 include_recipe 'transcode_consumer::install'
 
-running_workers = `pgrep -f transcode_consumer | wc -l`.to_i - 1
-worker_count = node['transcode']['consumer']['count'].to_i
+amqp_host = node['transcode']['amqp']['host']
+log_level = node['transcode']['consumer']['log_level']
+tot_procs = node['transcode']['consumer']['count'].to_i
+num_procs = `pgrep -f '^/usr/local/rvm/gems/.*/bin/transcode_consumer ' | wc -l`.to_i
 
-qty = worker_count - running_workers
-
-qty.times do |idx|
-  rvm_shell "Start the #{idx}th consumer" do
+num_procs.upto( tot_procs - 1 ) do |idx|
+  rvm_shell "Start consumer process ##{idx}" do
     ruby_string "#{node['transcode']['consumer']['ruby']}@transcode_consumer"
-    code "transcode_consumer --amqp-host #{node['transcode']['amqp']['host']} --log-level #{node['transcode']['consumer']['log_level']} &"
+    code <<-EOF
+      nohup transcode_consumer \
+        --amqp-host #{amqp_host} \
+        --log-level #{log_level} \
+        &>>/var/log/transcode_parent_#{idx}.log \
+        </dev/null &
+    EOF
   end
 end
 
